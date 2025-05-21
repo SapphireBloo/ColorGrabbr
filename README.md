@@ -1,17 +1,26 @@
-<<<<<<< HEAD
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
 # ColorGrabbr
-Simple Color Picker Website Concept
->>>>>>> caadd18ce3d28279726aaf51baa1b7fe3d16fec7
+
+A simple and intuitive color picker web app built with React and Vite.  
+Quickly grab colors, explore palettes, and experiment with color formats — all in a fast, modern interface.
+
+---
+
+## Technologies Used
+
+- [React](https://reactjs.org/)  
+- [Vite](https://vitejs.dev/)  
+- [gh-pages](https://github.com/tschaub/gh-pages) for deployment  
+
+---
+
+## Contributing
+
+Feel free to open issues or submit pull requests.  
+Suggestions and improvements are welcome!
+
+---
+
+## Contact
+
+Created by [SapphireBloo](https://github.com/SapphireBloo)  
+Feel free to reach out with questions or feedback.
