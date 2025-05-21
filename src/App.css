@@ -1,0 +1,513 @@
+/* src/App.css */
+/* Base theme variables */
+:root {
+  --bg-color: #f9f9f9;
+  --text-color: #222;
+  --dropzone-bg: #fff;
+  --dropzone-border: #bbb;
+  --dropzone-text: #333;
+  --color-box-border: #ccc;
+  --headline-color: #111;
+}
+
+/* Dark theme overrides */
+.app.dark {
+  --bg-color: #1e1e1e;
+  --text-color: #fff;
+  --dropzone-bg: #2c2c2c;
+  --dropzone-border: #555;
+  --dropzone-text: #ddd;
+  --color-box-border: #666;
+  --headline-color: #eee;
+}
+
+
+
+/* Reset and base layout */
+html, body, #root {
+  margin: 0; padding: 0;
+  width: 100%; height: 100%;
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.app  {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 100vh; padding: 2rem;
+  text-align: center;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  width: 100%;
+}
+
+/* Headline */
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: var(--headline-color);
+  transition: color 0.3s;
+}
+
+/* Color preview box */
+.color-box {
+  width: 80%; height: 80px;
+  border-radius: 12px;
+  margin: 1rem auto;
+  border: 2px solid var(--color-box-border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width:120px
+}
+
+/* Buttons for format change */
+.format-buttons {
+  margin: 1rem 0;
+}
+
+.format-buttons button {
+  background-color: var(--dropzone-bg);
+  border: 1px solid var(--dropzone-border);
+  color: var(--dropzone-text);
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Active and hover states */
+.format-buttons button.active {
+  background-color: #0078d4;
+  color: #fff;
+}
+
+.format-buttons button:hover {
+  background-color: #0078d4;
+  color: #fff;
+}
+
+/* Drop zone */
+.drop-zone {
+  border: 2px dashed var(--dropzone-border);
+  padding: 2rem;
+  border-radius: 16px;
+  background-color: var(--dropzone-bg);
+  color: var(--dropzone-text);
+  width: 100%; max-width: 90%;
+  margin: 2rem 0;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.drop-zone:hover {
+  background-color: var(--dropzone-border);
+}
+
+.drop-zone:focus {
+  outline: 2px dashed #0078d4;
+  outline-offset: 4px;
+}
+
+.drop-zone p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Canvas for picking */
+canvas {
+  max-width: 90%; height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--dropzone-border);
+  margin-top: 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  cursor: crosshair;
+  
+
+}
+
+canvas:focus {
+  outline: 3px dashed #0078d4;
+  outline-offset: 4px;
+}
+
+/* Dark mode toggle button */
+/* Remove or override */
+.toggle-wrapper {
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.auth-btn {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.auth-btn:hover {
+  background-color: #4338ca;
+}
+
+.dark-mode-toggle {
+  display: flex; align-items: center; gap: 0.5rem;
+  cursor: pointer;
+  background: var(--dropzone-bg);
+  border: 1px solid var(--dropzone-border);
+  padding: 0.4rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  user-select: none;
+  transition: background 0.3s, border 0.3s;
+}
+
+.dark-mode-toggle input {
+  display: none;
+}
+
+.dark-mode-toggle .slider {
+  width: 32px; height: 16px;
+  background: #464545;
+  border-radius: 999px;
+  position: relative;
+}
+
+.dark-mode-toggle .slider::before {
+  content: "";
+  position: absolute;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: white;
+  top: 1px; left: 1px;
+  transition: transform 0.3s ease;
+}
+
+.dark-mode-toggle input:checked + .slider::before {
+  transform: translateX(16px);
+}
+
+.dark-mode-toggle .mode-label {
+  color: var(--headline-color);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.app.dark .dark-mode-toggle .mode-label {
+  color: var(--headline-color);
+}
+
+.dark-mode-toggle:focus {
+  outline: 3px solid #0078d4;
+}
+
+
+.top-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: var(--banner-bg, #bbc0ca);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 90px;
+  width: auto;
+}
+
+
+
+@keyframes rotateRGB {
+  0% {
+    color: rgb(255, 0, 0); /* Red */
+  }
+  14% {
+    color: rgb(255, 165, 0); /* Orange */
+  }
+  28% {
+    color: rgb(255, 255, 0); /* Yellow */
+  }
+  42% {
+    color: rgb(0, 255, 0); /* Green */
+  }
+  57% {
+    color: rgb(0, 0, 255); /* Blue */
+  }
+  71% {
+    color: rgb(75, 0, 130); /* Indigo */
+  }
+  85% {
+    color: rgb(238, 130, 238); /* Violet */
+  }
+  100% {
+    color: rgb(255, 0, 0); /* Red again to loop */
+  }
+}
+
+/* Apply rotating RGB animation to the color text */
+.rotating-color {
+  display: inline-block;
+  animation: rotateRGB 10s linear infinite; /* Slow down to 10s */
+}
+.copy-button-container {
+  display: flex;
+  justify-content: center;  /* Horizontally centers the button */
+  align-items: center;      /* Vertically centers the button */
+  position: relative;          /* Fixed position so it stays in place */
+  top: 50%;                 /* Centers vertically */
+  left: 45%;                /* Centers horizontally */
+  transform: translate(-200%, -200%);  /* Adjusts the position to exactly center it */
+  z-index: 1000;            /* Ensures the button is on top */
+}
+
+
+.copy-button {
+  background: #0078d4;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+
+/* Container for color history on the left side */
+.color-history {
+  position: fixed;
+  top: 100px; /* Adjust this if needed */
+  left: 20px;
+  width: 180px; /* Adjust width as needed */
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Reduced gap */
+}
+
+/* Individual swatch card (deck-like style) */
+.swatch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin: 6px;
+  min-width: 120px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect to expand the card */
+.swatch:hover {
+  transform: translateY(-10px) scale(1.1); /* Move up and scale up when hovered */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  z-index: 10; /* Bring the hovered card to the front */
+}
+
+/* Make all non-hovered swatches have a slight offset to create overlapping deck effect */
+.swatch:not(:hover) {
+  transform: translateY(10px) scale(0.95); /* Slightly move down and scale down */
+}
+
+/* History swatches container */
+.history-swatches {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Reduced gap between items */
+}
+
+/* Show color title when hovered */
+.swatch-title {
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 2px 4px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* Show color title when hovered */
+.swatch:hover .swatch-title {
+  display: block;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.collapse-btn {
+  background: none;
+  border: 1px solid #888;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: inherit;
+  transition: background 0.2s;
+}
+.collapse-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.copy-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+}
+.copy-icon:hover {
+  opacity: 1;
+}
+
+.copy-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+}
+
+
+.copy-tooltip {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #222;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  animation: fadeInOut 1.5s forwards;
+}
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(5px) translateX(-50%); }
+  10% { opacity: 1; transform: translateY(0) translateX(-50%); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-5px) translateX(-50%); }
+}
+
+
+
+
+
+
+
+.contrast-info p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+}
+
+.footer-banner {
+  background-color: var(--background);
+  color: var(--text);
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
+
+.footer-links {
+  margin-top: 0.5rem;
+}
+
+.footer-links a {
+  margin: 0 1rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  background: #fff;
+  color: #333;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.modal input {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.modal-btn {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-close {
+  background: transparent;
+  color: #444;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  align-self: flex-end;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-email {
+  font-size: 1rem;
+   color: #3498db;  
+  font-weight: bold; 
+}
+
+
