@@ -7,5 +7,5 @@ const repoName = 'ColorGrabbr'
 export default defineConfig({
 
   plugins: [react()],
-  base: '/ColorGrabbr/'
+  base: './'
 })
